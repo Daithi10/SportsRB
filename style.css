@@ -1,6 +1,43 @@
 h1{
-    color:blue;
+    color:hwb(236 6% 7% / 0.5);
+    text-align: left; font-style: italic; font-weight: bold;
 }
-body{
-    background-color: lightblue;
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+h2{
+    color:rgb(0, 0, 0);
+    font-size: 35px; font-style: italic; font-weight: bold;
+}
+p{
+   text-align: left; font-size: 30px; width: 100%;
+}
+.grid-image{
+    height: 50%; width: 100%;
+}
+.container{
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 75%;
+    margin-left: 12.5%;
+    padding: 5px;
+}
+.grid-item{
+    padding: 10px;
+}
+
+.flex-container {
+    display: flex;
+    background-color: #f1f1f1;
+    background-color: rgba(30, 255, 86, 0.781);
+    margin: 10px;
+    padding: 20px;
+    font-size:25px;
+    justify-content: space-between;
+}
+img{
+    width: 100%;
+    height: auto;
 }
