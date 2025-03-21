@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DM Sports</title>
-    <meta name="viewport" content="width=device-width"
-    intial-scale="1.0>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +13,7 @@
         </div>
 
     <h2>Latest News</h2>
- <div class="container">
+  <div class="container">
 <div class="grid-item">
     <a href="https://www.google.com">
     <img class="grid-image" src="scarves.jpg" alt="showing audience at stadium holding up scarves">
@@ -28,7 +26,13 @@
 </div>
 </div>
     <footer>
-        <p>&copy; 2025 DM Sports</p>
+        <p>Sign up for our newsletter</p>
+        <form action="newsletter.php" method="post">
+            <input type="email" name="email" placeholder="Enter email address">
+            <input type="submit" value="Subscribe">
+            <p>Follow us on <a href="DMsports">X</a> & <a href="DMsports">Facebook</a>
+            <p>&copy; 2025 DM Sports</p>
+</form>
     </footer>
 </body>
 </html>
