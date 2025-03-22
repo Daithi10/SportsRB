@@ -46,10 +46,18 @@ img{
         grid-template-columns: auto;
         padding: 0px; 20px;
         background color: white;
-    .flex-container{
-        display: block;
-        padding: 10px;
+    }
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #f1f1f1;
+        background-color: rgba(30, 255, 86, 0.781);
         margin: 10px;
+        padding: 20px;
+        font-size:25px;
+        justify-content: space-between;
     }
+    p{
+        color:rgb(0, 0, 0);
+        font-size: 35px; font-style: italic; font-weight: bold;
     }
-    
