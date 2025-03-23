@@ -4,36 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DM Sports</title>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="flex-container">
+    <div class="nav-container">
         <h1>DM Sports</h1>
-        <pre><a href="#">Home</a>  <a href="#">Sports</a> <a href="#">Merchandise</a> <a href="#">Login</a> <a href="#">Contact</a></pre>
+        <pre class="style-links"><a href="#">Home</a>  <a href="#">Sports</a> <a href="#">Merchandise</a> <a href="#">Login</a> <a href="#">Contact</a></pre>
+    </div>
+    <div class="page-header">
+        <h2>Trending News</h2>
+    </div>
+<div class="flex-container-parent">
+    <div class="flex-container resize-container">
+        <a href="https://www.google.com">
+            <img class="grid-image" src="scarves.jpg" alt="showing audience at stadium holding up scarves">
+        </a>
+        <p>It was a night to forget for Arsenal, held to a 1-1 draw at Old Trafford</p>
+    </div>
+    <div class="flex-container resize-container">
+        <img class="grid-image" src="IMT.avif" alt="Irish players celebrating doherty's goal">
+        <p>Ireland vs Bulgaria; a rare glimpse of what the Irish men's team could become</p>
+    </div>
+    <div class="flex-video-container resize-container">
+        <div class="video-header">
+            <p>On this day...</p>
         </div>
-    <h2>Latest News</h2>
-<div class="grid-item">
-    <a href="https://www.google.com">
-    <img class="grid-image" src="scarves.jpg" alt="showing audience at stadium holding up scarves">
-    </a>
-    <p>It was a night to forget for Arsenal, held to a 1-1 draw at Old Trafford</p>
+        <div class="video-body">
+            <video src="On This Day (April 22nd).mp4" controls></video>
+            <!-- <a href="https://www.youtube.com/watch?v=i_Y1PE62auA" alt="video showing highlights of a football match">Goals</a> -->
+        </div>
+    </div>
 </div>
-<div class="grid-item">
-    <img class="grid-image" src="IMT.avif" alt="Irish players celebrating doherty's goal">
-    <p>Ireland vs Bulgaria; a rare glimpse of what the Irish men's team could become</p>
-</div>
-<div class="grid-item">
-    <p>On this day</p>
-    <video src="On This Day (April 22nd).mp4" controls></video>
-    <a href="https://www.youtube.com/watch?v=i_Y1PE62auA" alt="video showing highlights of a football match"></a>
-</div>
-<form>
-        <p>SUBSCRIBE TODAY</p>
-        <action="newsletter.php" method="post">
-            <input type="email" name="email" placeholder="Enter email address">
-            <input type="submit" value="Subscribe"><p>Get the latest news and updates</p>
-            <p>Follow us on <a href="https://x.com">X</a> and <a href="https://www.facebook.com">Facebook</a></p>
-            <p>&copy; 2025 DM Sports</p>
-</form>
+
+    <div class="footer">
+        <form action="newsletter.php" method="post">
+            <div class="inner-footer-left">
+                <p>SUBSCRIBE TODAY</p>
+                <input type="email" name="email" placeholder="Enter email address">
+                <button type="submit">Subscribe</button>
+            </div>
+            <div class="inner-footer-center">
+                <p>Get the latest news and updates</p>
+                <!-- <p>Follow us on</p> -->
+                <i class="fa fa-twitter"></i><a href="https://x.com">X</a>
+                <i class="fa fa-facebook-official"></i><a href="https://www.facebook.com">facebook</a>
+            </div>
+            <div class="inner-footer-right">
+                <p>&copy; 2025 DM Sports</p>
+            </div>
+        </form>
+    </div>
+
+        <!-- <div class="blah">
+            <p>blah1</p>
+            <p>blah2</p>
+            <p>blah1</p>
+            <p>blah2</p>
+            <p>blah1</p>
+            <p>blah2</p>
+        </div> -->
+
+
  </body>
 </html>
