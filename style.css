@@ -45,8 +45,8 @@ p{
     padding: 0 20px;
     font-size: 22px;
     justify-content: space-between;
-    position: fixed;
-    width: 100%;
+    /* position: fixed; */
+    /* width: 100%; */
 }
 
 .style-links a {
