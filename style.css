@@ -49,14 +49,14 @@ p{
     /* width: 100%; */
 }
 
-.style-links a {
-    text-decoration: none;
-    color: #e5eaee;
+.style-links{
+  text-decoration-color: #e5eaee;
+
 }
 
-.style-links a:hover {
-    color: #003866;
-    background-color: #e5eaee;
+.style-links:hover {
+    /* color: #003866; */
+    /* background-color: #e5eaee; */
 }
 
 .page-header {
