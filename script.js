@@ -1,123 +1,98 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("fanPollForm");
-    const resultsDiv = document.getElementById("pollResults");
-
-    // Load votes from localStorage or initialize
-    const players = ["Ronaldo", "Mbappe", "Messi"];
-    let votes = JSON.parse(localStorage.getItem("fanPollVotes")) || {
-        Ronaldo: 0,
-        Mbappe: 0,
-        Messi: 0
-    };
-
-    function renderResults() {
-        resultsDiv.innerHTML = "";
-        const totalVotes = players.reduce((sum, p) => sum + votes[p], 0);
-        
-        if (totalVotes === 0) {
-            resultsDiv.innerHTML = "<p>No votes yet. Be the first to vote!</p>";
-            return;
-        }
-
-        players.forEach(player => {
-            const percent = ((votes[player] / totalVotes) * 100).toFixed(1);
-            resultsDiv.innerHTML += `
-                <p><strong>${player}:</strong> ${votes[player]} votes (${percent}%)</p>
-               // <div style="background: #ddd; width: 100%; height: 20px; border-radius: 5px;">
-                    <div style="width: ${percent}%; background: #4caf50; height: 100%; border-radius: 5px;"></div>
-                </div>
-                <br>
-            `;
-        });
-    }
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const selected = form.player.value;
-        if (!selected) {
-            alert("Please select a player before voting.");
-            return;
-        }
-
-        votes[selected]++;
-        localStorage.setItem("fanPollVotes", JSON.stringify(votes));
-        renderResults();
-        alert("Thanks for voting!");
-        form.reset();
-    });
-
-    // Initial render
-    renderResults();
-});
-// Reset Votes Button
-const resetBtn = document.getElementById("resetPollBtn");
-resetBtn.addEventListener("click", function () {
-    if (confirm("Are you sure you want to reset all votes?")) {
-        votes = {
-            Ronaldo: 0,
-            Mbappe: 0,
-            Messi: 0
-        };
-        localStorage.setItem("fanPollVotes", JSON.stringify(votes));
-        renderResults();
-        alert("Votes have been reset.");
-    }
-});
-// === Sports Quiz Logic ===
 const quizForm = document.getElementById("sportsQuizForm");
 const quizResult = document.getElementById("quizResult");
+const extraContent = document.getElementById("extraContent");
 const resetQuizBtn = document.getElementById("resetQuizBtn");
 
 quizForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const answers = {
-        q1: "11",
-        q2: "France",
-        q3: "40"
-    };
+  const questions = ["q1", "q2", "q3"];
+  const answers = { q1: "11", q2: "France", q3: "40" };
+  let score = 0;
+  let allAnswered = true;
 
-    let score = 0;
+  questions.forEach((q) => {
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    const questionBlock = document.querySelector(`input[name="${q}"]`).closest(".quiz-question");
 
-    for (let question in answers) {
-        const userAnswer = quizForm[question].value;
-        if (userAnswer === answers[question]) {
-            score++;
-        }
+    if (!selected) {
+      allAnswered = false;
+      questionBlock.style.border = "2px solid red";
+    } else {
+      questionBlock.style.border = "none";
+      if (selected.value === answers[q]) {
+        score++;
+      }
     }
+  });
 
-    quizResult.textContent = `You scored ${score} out of 3.`;
+  if (!allAnswered) {
+    quizResult.textContent = "Please answer all questions!";
+    quizResult.style.color = "red";
+    return;
+  }
+
+  const messages = [
+    "Nice try! Keep training and you’ll be a champ in no time!",
+    "Great effort! You’re scoring like a pro!",
+    "Awesome! You really know your sports!",
+    "Legendary! You crushed this quiz like a true MVP!",
+  ];
+  const colors = ["#c0392b", "#f39c12", "#27ae60", "#2980b9"];
+  quizResult.textContent = `You scored ${score} out of 3. ${messages[score]}`;
+  quizResult.style.color = colors[score];
+
+  // Extra content
+  extraContent.innerHTML = "";
+
+  const img = document.createElement("img");
+  img.src = `https://via.placeholder.com/100?text=Level+${score}`;
+  img.alt = "Fan Level Icon";
+  img.style.width = "100px";
+  extraContent.appendChild(img);
+
+  const factBtn = document.createElement("button");
+  factBtn.textContent = "Show me a fun sports fact!";
+  extraContent.appendChild(factBtn);
+
+  const factDiv = document.createElement("div");
+  extraContent.appendChild(factDiv);
+
+  factBtn.addEventListener("click", () => {
+    const facts = [
+      "The fastest goal in World Cup history was scored after just 11 seconds!",
+      "Basketball was invented in 1891 by James Naismith.",
+      "The longest tennis match lasted 11 hours and 5 minutes!",
+    ];
+    const randomFact = facts[Math.floor(Math.random() * facts.length)];
+    factDiv.textContent = randomFact;
+  });
 });
 
 resetQuizBtn.addEventListener("click", function () {
-    quizForm.reset();
-    quizResult.textContent = "";
+  quizForm.reset();
+  quizResult.textContent = "";
+  quizResult.style.color = "black";
+  extraContent.innerHTML = "";
+  const questions = quizForm.querySelectorAll(".quiz-question");
+  questions.forEach(q => q.style.border = "none");
 });
-const shareBtn = document.getElementById("shareQuizBtn");
-const shareFeedback = document.getElementById("shareFeedback");
+// Leaderboard
+function updateLeaderboard(name, score) {
+  const leaderboard = JSON.parse(localStorage.getItem("quizLeaderboard")) || [];
+  leaderboard.push({ name, score });
+  leaderboard.sort((a, b) => b.score - a.score);
+  localStorage.setItem("quizLeaderboard", JSON.stringify(leaderboard.slice(0, 5))); // Top 5
+  showLeaderboard();
+}
 
-shareBtn.addEventListener("click", function () {
-    const scoreText = quizResult.textContent || "Check out this cool sports quiz!";
-    const shareUrl = window.location.href;
-
-    if (navigator.share) {
-        // ✅ Mobile-friendly native share
-        navigator.share({
-            title: "Mini Sports Quiz",
-            text: scoreText,
-            url: shareUrl
-        }).then(() => {
-            shareFeedback.textContent = "Shared successfully!";
-        }).catch((err) => {
-            shareFeedback.textContent = "Sharing failed.";
-        });
-    } else {
-        // 🔗 Fallback: copy to clipboard
-        const fullText = `${scoreText} 👉 ${shareUrl}`;
-        navigator.clipboard.writeText(fullText).then(() => {
-            shareFeedback.textContent = "Link copied! You can now paste it to share.";
-        }).catch(() => {
-            shareFeedback.textContent = "Could not copy link.";
-        });
-    }
-});
+function showLeaderboard() {
+  const leaderboard = JSON.parse(localStorage.getItem("quizLeaderboard")) || [];
+  const board = document.createElement("div");
+  board.innerHTML = "<h3>🏅 Top Scores</h3><ol>" + leaderboard.map(e => `<li>${e.name}: ${e.score}/3</li>`).join("") + "</ol>";
+  extraContent.appendChild(board);
+}
+const userName = prompt("Enter your name for the leaderboard:");
+if (userName) {
+  updateLeaderboard(userName, score);
+}
