@@ -17,9 +17,9 @@ quizForm.addEventListener("submit", function (e) {
 
     if (!selected) {
       allAnswered = false;
-      questionBlock.style.border = "2px solid red";
+      questionBlock.classList.add("unanswered");
     } else {
-      questionBlock.style.border = "none";
+      questionBlock.classList.remove("unanswered");
       if (selected.value === answers[q]) {
         score++;
       }
@@ -28,7 +28,7 @@ quizForm.addEventListener("submit", function (e) {
 
   if (!allAnswered) {
     quizResult.textContent = "Please answer all questions!";
-    quizResult.style.color = "red";
+    quizResult.className = "result error";
     return;
   }
 
@@ -38,24 +38,21 @@ quizForm.addEventListener("submit", function (e) {
     "Awesome! You really know your sports!",
     "Legendary! You crushed this quiz like a true MVP!",
   ];
-  const colors = ["#c0392b", "#f39c12", "#27ae60", "#2980b9"];
+  const colors = ["low", "medium", "high", "top"]; // used as class names
+
   quizResult.textContent = `You scored ${score} out of 3. ${messages[score]}`;
-  quizResult.style.color = colors[score];
+  quizResult.className = `result ${colors[score]}`;
 
-  // Extra content
+  // Clear and show extra content
   extraContent.innerHTML = "";
-
-  const img = document.createElement("img");
-  img.src = `https://via.placeholder.com/100?text=Level+${score}`;
-  img.alt = "Fan Level Icon";
-  img.style.width = "100px";
-  extraContent.appendChild(img);
 
   const factBtn = document.createElement("button");
   factBtn.textContent = "Show me a fun sports fact!";
+  factBtn.classList.add("fact-button");
   extraContent.appendChild(factBtn);
 
   const factDiv = document.createElement("div");
+  factDiv.classList.add("fact");
   extraContent.appendChild(factDiv);
 
   factBtn.addEventListener("click", () => {
@@ -67,16 +64,23 @@ quizForm.addEventListener("submit", function (e) {
     const randomFact = facts[Math.floor(Math.random() * facts.length)];
     factDiv.textContent = randomFact;
   });
+
+  const userName = prompt("Enter your name for the leaderboard:");
+  if (userName) {
+    updateLeaderboard(userName.trim(), score);
+  }
 });
 
 resetQuizBtn.addEventListener("click", function () {
   quizForm.reset();
   quizResult.textContent = "";
-  quizResult.style.color = "black";
+  quizResult.className = "result";
   extraContent.innerHTML = "";
+
   const questions = quizForm.querySelectorAll(".quiz-question");
-  questions.forEach(q => q.style.border = "none");
+  questions.forEach(q => q.classList.remove("unanswered"));
 });
+
 // Leaderboard
 function updateLeaderboard(name, score) {
   const leaderboard = JSON.parse(localStorage.getItem("quizLeaderboard")) || [];
@@ -89,10 +93,12 @@ function updateLeaderboard(name, score) {
 function showLeaderboard() {
   const leaderboard = JSON.parse(localStorage.getItem("quizLeaderboard")) || [];
   const board = document.createElement("div");
-  board.innerHTML = "<h3>🏅 Top Scores</h3><ol>" + leaderboard.map(e => `<li>${e.name}: ${e.score}/3</li>`).join("") + "</ol>";
+  board.classList.add("leaderboard");
+
+  board.innerHTML = "<h3>🏅 Top Scores</h3><ol>" +
+    leaderboard.map(e => `<li>${e.name}: ${e.score}/3</li>`).join("") +
+    "</ol>";
+
   extraContent.appendChild(board);
 }
-const userName = prompt("Enter your name for the leaderboard:");
-if (userName) {
-  updateLeaderboard(userName, score);
-}
+

@@ -1,320 +1,229 @@
-GenS Styles
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Base Reset and Body */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    padding: 20px;
-    background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 5vw;
+  background-color: #f4f4f4;
 }
 
+/* Typography */
 h1, h2, p {
-    margin-bottom: 10px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 a {
-    text-decoration: none;
-    color: #333;
+  text-decoration: none;
+  color: #333;
 }
+
+/* Navbar */
 .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #003866;
-    padding: 10px 20px;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #003866;
+  padding: 1rem 2rem;
+  color: white;
+  flex-wrap: wrap;
 }
 
 .nav-container h1 {
-    font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .style-links a {
-    color: white;
-    margin: 0 15px;
-    font-size: 16px;
+  color: white;
+  margin: 0 1rem;
+  font-size: 1rem;
 }
 
 .style-links a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
+/* Header */
 .page-header {
-    text-align: center;
-    margin-top: 30px;
+  text-align: center;
+  margin-top: 2rem;
 }
 
 .page-header h2 {
-    font-size: 24px;
-    color: #003866;
+  font-size: 2rem;
+  color: #003866;
 }
+
+/* Flex Grid */
 .flex-container-parent {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-    margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 2rem;
 }
 
 .flex-container {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    width: calc(33.33% - 20px);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: calc(33.33% - 20px);
 }
 
 .resize-container {
-    flex: 1;
+  flex: 1;
 }
 
 .grid-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
+/* Video */
 .video-header p {
-    font-size: 18px;
-    font-weight: bold;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .video-body video {
-    width: 100%;
-    border-radius: 8px;
+  width: 100%;
+  border-radius: 8px;
 }
 
-/* .table-container {
-    margin-top: 30px;
-    padding: 20px;
-    border: 1px solid #003866;
-} */
-
+/* Tables */
 table, tr, th, td {
-    border: 1px solid #003866;
-    /* border-collapse: collapse; */
-    margin-top: 30px;
-    padding: 20px;
-    border: 1px solid #003866;
-    
+  border: 1px solid #003866;
+  padding: 20px;
+  margin-top: 30px;
 }
 
+/* Footer */
 .footer {
-    background-color: #003866;
-    color: white;
-    padding: 20px;
-    margin-top: 30px;
-    border-radius: 8px;
+  background-color: #003866;
+  color: white;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 8px;
 }
 
 .footer form {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .inner-footer-left,
 .inner-footer-center,
 .inner-footer-right {
-    width: calc(33.33% - 20px);
-    margin-bottom: 20px;
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
 }
 
 .inner-footer-left input,
 .inner-footer-left button {
-    padding: 10px;
-    margin-top: 5px;
-    width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  width: 100%;
 }
 
 .inner-footer-center i {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .inner-footer-center a {
-    margin-right: 15px;
+  margin-right: 15px;
 }
 
 .inner-footer-right {
-    text-align: right;
+  text-align: right;
 }
 
-@media (max-width: 1200px) {
-    .flex-container {
-        width: calc(50% - 20px);
-    }
-}
-
-@media (max-width: 768px) {
-    .flex-container {
-        width: 100%;
-    }
-
-    .nav-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .style-links {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .style-links a {
-        margin: 5px 0;
-    }
-
-    .inner-footer-left,
-    .inner-footer-center,
-    .inner-footer-right {
-        width: 100%;
-    }
-
-    .footer form {
-        flex-direction: column;
-    }
-
-    .inner-footer-center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-container h1 {
-        font-size: 20px;
-    }
-
-    .style-links a {
-        font-size: 14px;
-    }
-
-    .page-header h2 {
-        font-size: 20px;
-    }
-
-    .footer form {
-        align-items: center;
-    }
-
-    .inner-footer-left input,
-    .inner-footer-left button {
-        width: auto;
-    }
-}
-.fan-poll-section {
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-top: 2px solid #ddd;
-    margin-top: 40px;
-}
-
-.fan-poll-section h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-}
-
-.vote-button,
-.reset-button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.vote-button {
-    background-color: #0066cc;
-    color: white;
-}
-
-.vote-button:hover {
-    background-color: #218838;
-}
-
-.reset-button {
-    background-color: #cc0000;
-    color: white;
-}
-
-.reset-button:hover {
-    background-color: #990000;
-}
-
-.poll-results {
-    margin-top: 20px;
-}
-
-.poll-results p {
-    margin: 5px 0;
-}
-
-.poll-results div {
-    margin-bottom: 15px;
-}
+/* Quiz Section */
 .sports-quiz-section {
-    padding: 20px;
-    margin-top: 40px;
-    background-color: #eef;
-    border-top: 2px solid #ccc;
+  padding: 20px;
+  margin-top: 40px;
+  background-color: #eef;
+  border-top: 2px solid #ccc;
 }
 
 .sports-quiz-section h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .quiz-question {
-    margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .quiz-button,
-.reset-button {
-    padding: 8px 16px;
-    margin-right: 10px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.reset-button,
+.vote-button,
+.share-button {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .quiz-button {
-    background-color: #0066cc;
-    color: white;
+  background-color: #0066cc;
+  color: white;
 }
-
 .quiz-button:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
-.quiz-result {
-    margin-top: 20px;
-    font-weight: bold;
+.reset-button {
+  background-color: #cc0000;
+  color: white;
 }
-.share-button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: green;;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
+.reset-button:hover {
+  background-color: #990000;
 }
+
+.quiz-result,
 .share-feedback {
-    margin-top: 10px;
-    font-size: 14px;
-    color: green;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
 }
-  .contact {
+
+.share-button {
+  background-color: green;
+  color: white;
+}
+
+/* Poll Section */
+.fan-poll-section {
+  padding: 2rem;
+  background-color: #f4f4f4;
+  border-top: 2px solid #ddd;
+  margin-top: 40px;
+}
+
+.fan-poll-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.poll-results {
+  margin-top: 1rem;
+}
+
+.poll-results p {
+  margin: 5px 0;
+}
+
+/* Contact Form */
+.contact {
   background-color: #f9f9f9;
   padding: 3rem 2rem;
 }
@@ -361,3 +270,80 @@ form button {
 
 form button:hover {
   background-color: #333;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .flex-container {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .flex-container,
+  .inner-footer-left,
+  .inner-footer-center,
+  .inner-footer-right {
+    width: 100%;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .style-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .style-links a {
+    margin: 5px 0;
+  }
+
+  .footer form {
+    flex-direction: column;
+  }
+
+  .inner-footer-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .page-header h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container h1 {
+    font-size: 1.2rem;
+  }
+
+  .style-links a {
+    font-size: 0.9rem;
+  }
+
+  .quiz-button,
+  .reset-button,
+  .vote-button,
+  .share-button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .inner-footer-left input,
+  .inner-footer-left button {
+    width: 100%;
+  }
+
+  .footer form {
+    align-items: center;
+  }
+
+  .page-header h2 {
+    font-size: 1.2rem;
+  }
+}
